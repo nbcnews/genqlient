@@ -14,6 +14,9 @@ import (
 	"github.com/vektah/gqlparser/v2/gqlerror"
 )
 
+// RequestOption is a function that can be passed to MakeRequest to modify the http request behavior.
+type RequestOption func(req *http.Request)
+
 // Client is the interface that the generated code calls into to actually make
 // requests.
 type Client interface {
@@ -37,6 +40,7 @@ type Client interface {
 		ctx context.Context,
 		req *Request,
 		resp *Response,
+		opts ...RequestOption,
 	) error
 }
 
@@ -122,7 +126,7 @@ type Response struct {
 	Errors     gqlerror.List          `json:"errors,omitempty"`
 }
 
-func (c *client) MakeRequest(ctx context.Context, req *Request, resp *Response) error {
+func (c *client) MakeRequest(ctx context.Context, req *Request, resp *Response, opts ...RequestOption) error {
 	var httpReq *http.Request
 	var err error
 	if c.method == http.MethodGet {
@@ -135,6 +139,9 @@ func (c *client) MakeRequest(ctx context.Context, req *Request, resp *Response) 
 		return err
 	}
 	httpReq.Header.Set("Content-Type", "application/json")
+	for _, opt := range opts {
+		opt(httpReq)
+	}
 
 	if ctx != nil {
 		httpReq = httpReq.WithContext(ctx)

@@ -180,6 +180,7 @@ func (v *__InputObjectQueryInput) GetQuery() UserQueryInput { return v.Query }
 func InputObjectQuery(
 	client graphql.Client,
 	query UserQueryInput,
+	opts ...graphql.RequestOption,
 ) (*InputObjectQueryResponse, error) {
 	req := &graphql.Request{
 		OpName: "InputObjectQuery",
@@ -203,6 +204,7 @@ query InputObjectQuery ($query: UserQueryInput) {
 		nil,
 		req,
 		resp,
+		opts...,
 	)
 
 	return &data, err

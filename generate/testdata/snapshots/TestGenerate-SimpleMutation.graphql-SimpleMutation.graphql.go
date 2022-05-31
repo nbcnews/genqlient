@@ -48,6 +48,7 @@ func (v *__SimpleMutationInput) GetName() string { return v.Name }
 func SimpleMutation(
 	client graphql.Client,
 	name string,
+	opts ...graphql.RequestOption,
 ) (*SimpleMutationResponse, error) {
 	req := &graphql.Request{
 		OpName: "SimpleMutation",
@@ -72,6 +73,7 @@ mutation SimpleMutation ($name: String!) {
 		nil,
 		req,
 		resp,
+		opts...,
 	)
 
 	return &data, err

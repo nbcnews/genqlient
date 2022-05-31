@@ -266,6 +266,7 @@ func (v *User) GetName() string { return v.Name }
 
 func TypeNames(
 	client graphql.Client,
+	opts ...graphql.RequestOption,
 ) (*Resp, error) {
 	req := &graphql.Request{
 		OpName: "TypeNames",
@@ -296,6 +297,7 @@ query TypeNames {
 		nil,
 		req,
 		resp,
+		opts...,
 	)
 
 	return &data, err

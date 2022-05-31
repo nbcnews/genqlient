@@ -39,6 +39,7 @@ func (v *TypeNameQueryUser) GetId() testutil.ID { return v.Id }
 
 func TypeNameQuery(
 	client graphql.Client,
+	opts ...graphql.RequestOption,
 ) (*TypeNameQueryResponse, error) {
 	req := &graphql.Request{
 		OpName: "TypeNameQuery",
@@ -60,6 +61,7 @@ query TypeNameQuery {
 		nil,
 		req,
 		resp,
+		opts...,
 	)
 
 	return &data, err

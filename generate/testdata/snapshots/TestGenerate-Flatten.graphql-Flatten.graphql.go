@@ -268,6 +268,7 @@ func (v *VideoFieldsParentTopic) GetVideoChildren() []ChildVideoFields { return 
 
 func ComplexNamedFragments(
 	client graphql.Client,
+	opts ...graphql.RequestOption,
 ) (*InnerQueryFragment, error) {
 	req := &graphql.Request{
 		OpName: "ComplexNamedFragments",
@@ -317,6 +318,7 @@ fragment ChildVideoFields on Video {
 		nil,
 		req,
 		resp,
+		opts...,
 	)
 
 	return &data, err

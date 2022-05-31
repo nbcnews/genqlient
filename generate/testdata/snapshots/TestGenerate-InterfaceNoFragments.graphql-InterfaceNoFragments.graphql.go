@@ -628,6 +628,7 @@ func (v *InterfaceNoFragmentsQueryWithPointerVideo) GetName() *string { return v
 
 func InterfaceNoFragmentsQuery(
 	client graphql.Client,
+	opts ...graphql.RequestOption,
 ) (*InterfaceNoFragmentsQueryResponse, error) {
 	req := &graphql.Request{
 		OpName: "InterfaceNoFragmentsQuery",
@@ -664,6 +665,7 @@ query InterfaceNoFragmentsQuery {
 		nil,
 		req,
 		resp,
+		opts...,
 	)
 
 	return &data, err

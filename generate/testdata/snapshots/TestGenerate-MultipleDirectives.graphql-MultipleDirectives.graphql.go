@@ -329,6 +329,7 @@ func MultipleDirectives(
 	client graphql.Client,
 	query MyInput,
 	queries []*UserQueryInput,
+	opts ...graphql.RequestOption,
 ) (*MyMultipleDirectivesResponse, error) {
 	req := &graphql.Request{
 		OpName: "MultipleDirectives",
@@ -356,6 +357,7 @@ query MultipleDirectives ($query: UserQueryInput, $queries: [UserQueryInput]) {
 		nil,
 		req,
 		resp,
+		opts...,
 	)
 
 	return &data, err

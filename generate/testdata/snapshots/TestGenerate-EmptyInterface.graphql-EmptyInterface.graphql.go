@@ -22,6 +22,7 @@ func (v *EmptyInterfaceResponse) GetGetComplexJunk() []map[string]*[]*map[string
 
 func EmptyInterface(
 	client graphql.Client,
+	opts ...graphql.RequestOption,
 ) (*EmptyInterfaceResponse, error) {
 	req := &graphql.Request{
 		OpName: "EmptyInterface",
@@ -41,6 +42,7 @@ query EmptyInterface {
 		nil,
 		req,
 		resp,
+		opts...,
 	)
 
 	return &data, err

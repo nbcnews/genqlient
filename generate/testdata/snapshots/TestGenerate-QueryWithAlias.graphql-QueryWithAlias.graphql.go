@@ -42,6 +42,7 @@ func (v *QueryWithAliasUser) GetOtherID() testutil.ID { return v.OtherID }
 
 func QueryWithAlias(
 	client graphql.Client,
+	opts ...graphql.RequestOption,
 ) (*QueryWithAliasResponse, error) {
 	req := &graphql.Request{
 		OpName: "QueryWithAlias",
@@ -63,6 +64,7 @@ query QueryWithAlias {
 		nil,
 		req,
 		resp,
+		opts...,
 	)
 
 	return &data, err

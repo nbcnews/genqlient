@@ -35,6 +35,7 @@ func (v *SimpleQueryUser) GetId() testutil.ID { return v.Id }
 
 func SimpleQuery(
 	client graphql.Client,
+	opts ...graphql.RequestOption,
 ) (*SimpleQueryResponse, error) {
 	req := &graphql.Request{
 		OpName: "SimpleQuery",
@@ -55,6 +56,7 @@ query SimpleQuery {
 		nil,
 		req,
 		resp,
+		opts...,
 	)
 
 	return &data, err

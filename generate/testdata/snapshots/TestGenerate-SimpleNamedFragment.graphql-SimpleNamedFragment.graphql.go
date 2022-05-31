@@ -548,6 +548,7 @@ func (v *VideoFieldsThumbnail) GetId() testutil.ID { return v.Id }
 
 func SimpleNamedFragment(
 	client graphql.Client,
+	opts ...graphql.RequestOption,
 ) (*SimpleNamedFragmentResponse, error) {
 	req := &graphql.Request{
 		OpName: "SimpleNamedFragment",
@@ -584,6 +585,7 @@ fragment VideoFields on Video {
 		nil,
 		req,
 		resp,
+		opts...,
 	)
 
 	return &data, err

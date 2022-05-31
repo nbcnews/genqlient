@@ -57,6 +57,7 @@ func (v *__InputEnumQueryInput) GetRole() Role { return v.Role }
 func InputEnumQuery(
 	client graphql.Client,
 	role Role,
+	opts ...graphql.RequestOption,
 ) (*InputEnumQueryResponse, error) {
 	req := &graphql.Request{
 		OpName: "InputEnumQuery",
@@ -80,6 +81,7 @@ query InputEnumQuery ($role: Role!) {
 		nil,
 		req,
 		resp,
+		opts...,
 	)
 
 	return &data, err

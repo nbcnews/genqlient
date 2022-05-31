@@ -506,6 +506,7 @@ func (v *InterfaceNestingRootTopicChildrenVideo) GetParent() InterfaceNestingRoo
 
 func InterfaceNesting(
 	client graphql.Client,
+	opts ...graphql.RequestOption,
 ) (*InterfaceNestingResponse, error) {
 	req := &graphql.Request{
 		OpName: "InterfaceNesting",
@@ -537,6 +538,7 @@ query InterfaceNesting {
 		nil,
 		req,
 		resp,
+		opts...,
 	)
 
 	return &data, err

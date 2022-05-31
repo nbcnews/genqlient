@@ -71,6 +71,7 @@ func (v *__RecursionInput) GetInput() RecursiveInput { return v.Input }
 func Recursion(
 	client graphql.Client,
 	input RecursiveInput,
+	opts ...graphql.RequestOption,
 ) (*RecursionResponse, error) {
 	req := &graphql.Request{
 		OpName: "Recursion",
@@ -100,6 +101,7 @@ query Recursion ($input: RecursiveInput!) {
 		nil,
 		req,
 		resp,
+		opts...,
 	)
 
 	return &data, err

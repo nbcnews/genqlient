@@ -3082,6 +3082,7 @@ func createUser(
 	ctx context.Context,
 	client graphql.Client,
 	user NewUser,
+	opts ...graphql.RequestOption,
 ) (*createUserResponse, map[string]interface{}, error) {
 	req := &graphql.Request{
 		OpName: "createUser",
@@ -3106,6 +3107,7 @@ mutation createUser ($user: NewUser!) {
 		ctx,
 		req,
 		resp,
+		opts...,
 	)
 
 	return &data, resp.Extensions, err
@@ -3114,6 +3116,7 @@ mutation createUser ($user: NewUser!) {
 func failingQuery(
 	ctx context.Context,
 	client graphql.Client,
+	opts ...graphql.RequestOption,
 ) (*failingQueryResponse, map[string]interface{}, error) {
 	req := &graphql.Request{
 		OpName: "failingQuery",
@@ -3135,6 +3138,7 @@ query failingQuery {
 		ctx,
 		req,
 		resp,
+		opts...,
 	)
 
 	return &data, resp.Extensions, err
@@ -3144,6 +3148,7 @@ func queryWithCustomMarshal(
 	ctx context.Context,
 	client graphql.Client,
 	date time.Time,
+	opts ...graphql.RequestOption,
 ) (*queryWithCustomMarshalResponse, map[string]interface{}, error) {
 	req := &graphql.Request{
 		OpName: "queryWithCustomMarshal",
@@ -3169,6 +3174,7 @@ query queryWithCustomMarshal ($date: Date!) {
 		ctx,
 		req,
 		resp,
+		opts...,
 	)
 
 	return &data, resp.Extensions, err
@@ -3179,6 +3185,7 @@ func queryWithCustomMarshalOptional(
 	client graphql.Client,
 	date *time.Time,
 	id *string,
+	opts ...graphql.RequestOption,
 ) (*queryWithCustomMarshalOptionalResponse, map[string]interface{}, error) {
 	req := &graphql.Request{
 		OpName: "queryWithCustomMarshalOptional",
@@ -3205,6 +3212,7 @@ query queryWithCustomMarshalOptional ($date: Date, $id: ID) {
 		ctx,
 		req,
 		resp,
+		opts...,
 	)
 
 	return &data, resp.Extensions, err
@@ -3214,6 +3222,7 @@ func queryWithCustomMarshalSlice(
 	ctx context.Context,
 	client graphql.Client,
 	dates []time.Time,
+	opts ...graphql.RequestOption,
 ) (*queryWithCustomMarshalSliceResponse, map[string]interface{}, error) {
 	req := &graphql.Request{
 		OpName: "queryWithCustomMarshalSlice",
@@ -3239,6 +3248,7 @@ query queryWithCustomMarshalSlice ($dates: [Date!]!) {
 		ctx,
 		req,
 		resp,
+		opts...,
 	)
 
 	return &data, resp.Extensions, err
@@ -3248,6 +3258,7 @@ func queryWithFlatten(
 	ctx context.Context,
 	client graphql.Client,
 	ids []string,
+	opts ...graphql.RequestOption,
 ) (*QueryFragment, map[string]interface{}, error) {
 	req := &graphql.Request{
 		OpName: "queryWithFlatten",
@@ -3307,6 +3318,7 @@ fragment FriendsFields on User {
 		ctx,
 		req,
 		resp,
+		opts...,
 	)
 
 	return &data, resp.Extensions, err
@@ -3316,6 +3328,7 @@ func queryWithFragments(
 	ctx context.Context,
 	client graphql.Client,
 	ids []string,
+	opts ...graphql.RequestOption,
 ) (*queryWithFragmentsResponse, map[string]interface{}, error) {
 	req := &graphql.Request{
 		OpName: "queryWithFragments",
@@ -3369,6 +3382,7 @@ query queryWithFragments ($ids: [ID!]!) {
 		ctx,
 		req,
 		resp,
+		opts...,
 	)
 
 	return &data, resp.Extensions, err
@@ -3378,6 +3392,7 @@ func queryWithInterfaceListField(
 	ctx context.Context,
 	client graphql.Client,
 	ids []string,
+	opts ...graphql.RequestOption,
 ) (*queryWithInterfaceListFieldResponse, map[string]interface{}, error) {
 	req := &graphql.Request{
 		OpName: "queryWithInterfaceListField",
@@ -3403,6 +3418,7 @@ query queryWithInterfaceListField ($ids: [ID!]!) {
 		ctx,
 		req,
 		resp,
+		opts...,
 	)
 
 	return &data, resp.Extensions, err
@@ -3412,6 +3428,7 @@ func queryWithInterfaceListPointerField(
 	ctx context.Context,
 	client graphql.Client,
 	ids []string,
+	opts ...graphql.RequestOption,
 ) (*queryWithInterfaceListPointerFieldResponse, map[string]interface{}, error) {
 	req := &graphql.Request{
 		OpName: "queryWithInterfaceListPointerField",
@@ -3437,6 +3454,7 @@ query queryWithInterfaceListPointerField ($ids: [ID!]!) {
 		ctx,
 		req,
 		resp,
+		opts...,
 	)
 
 	return &data, resp.Extensions, err
@@ -3446,6 +3464,7 @@ func queryWithInterfaceNoFragments(
 	ctx context.Context,
 	client graphql.Client,
 	id string,
+	opts ...graphql.RequestOption,
 ) (*queryWithInterfaceNoFragmentsResponse, map[string]interface{}, error) {
 	req := &graphql.Request{
 		OpName: "queryWithInterfaceNoFragments",
@@ -3475,6 +3494,7 @@ query queryWithInterfaceNoFragments ($id: ID!) {
 		ctx,
 		req,
 		resp,
+		opts...,
 	)
 
 	return &data, resp.Extensions, err
@@ -3484,6 +3504,7 @@ func queryWithNamedFragments(
 	ctx context.Context,
 	client graphql.Client,
 	ids []string,
+	opts ...graphql.RequestOption,
 ) (*queryWithNamedFragmentsResponse, map[string]interface{}, error) {
 	req := &graphql.Request{
 		OpName: "queryWithNamedFragments",
@@ -3537,6 +3558,7 @@ fragment MoreUserFields on User {
 		ctx,
 		req,
 		resp,
+		opts...,
 	)
 
 	return &data, resp.Extensions, err
@@ -3546,6 +3568,7 @@ func queryWithOmitempty(
 	ctx context.Context,
 	client graphql.Client,
 	id string,
+	opts ...graphql.RequestOption,
 ) (*queryWithOmitemptyResponse, map[string]interface{}, error) {
 	req := &graphql.Request{
 		OpName: "queryWithOmitempty",
@@ -3571,6 +3594,7 @@ query queryWithOmitempty ($id: ID) {
 		ctx,
 		req,
 		resp,
+		opts...,
 	)
 
 	return &data, resp.Extensions, err
@@ -3580,6 +3604,7 @@ func queryWithVariables(
 	ctx context.Context,
 	client graphql.Client,
 	id string,
+	opts ...graphql.RequestOption,
 ) (*queryWithVariablesResponse, map[string]interface{}, error) {
 	req := &graphql.Request{
 		OpName: "queryWithVariables",
@@ -3605,6 +3630,7 @@ query queryWithVariables ($id: ID!) {
 		ctx,
 		req,
 		resp,
+		opts...,
 	)
 
 	return &data, resp.Extensions, err
@@ -3613,6 +3639,7 @@ query queryWithVariables ($id: ID!) {
 func simpleQuery(
 	ctx context.Context,
 	client graphql.Client,
+	opts ...graphql.RequestOption,
 ) (*simpleQueryResponse, map[string]interface{}, error) {
 	req := &graphql.Request{
 		OpName: "simpleQuery",
@@ -3635,6 +3662,7 @@ query simpleQuery {
 		ctx,
 		req,
 		resp,
+		opts...,
 	)
 
 	return &data, resp.Extensions, err
@@ -3643,6 +3671,7 @@ query simpleQuery {
 func simpleQueryExt(
 	ctx context.Context,
 	client graphql.Client,
+	opts ...graphql.RequestOption,
 ) (*simpleQueryExtResponse, map[string]interface{}, error) {
 	req := &graphql.Request{
 		OpName: "simpleQueryExt",
@@ -3665,6 +3694,7 @@ query simpleQueryExt {
 		ctx,
 		req,
 		resp,
+		opts...,
 	)
 
 	return &data, resp.Extensions, err

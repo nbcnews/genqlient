@@ -226,6 +226,7 @@ func OmitEmptyQuery(
 	dt time.Time,
 	tz string,
 	tzNoOmitEmpty string,
+	opts ...graphql.RequestOption,
 ) (*OmitEmptyQueryResponse, error) {
 	req := &graphql.Request{
 		OpName: "OmitEmptyQuery",
@@ -258,6 +259,7 @@ query OmitEmptyQuery ($query: UserQueryInput, $queries: [UserQueryInput], $dt: D
 		nil,
 		req,
 		resp,
+		opts...,
 	)
 
 	return &data, err

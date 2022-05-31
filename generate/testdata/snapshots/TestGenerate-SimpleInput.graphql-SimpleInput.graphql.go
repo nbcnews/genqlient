@@ -44,6 +44,7 @@ func (v *__SimpleInputQueryInput) GetName() string { return v.Name }
 func SimpleInputQuery(
 	client graphql.Client,
 	name string,
+	opts ...graphql.RequestOption,
 ) (*SimpleInputQueryResponse, error) {
 	req := &graphql.Request{
 		OpName: "SimpleInputQuery",
@@ -67,6 +68,7 @@ query SimpleInputQuery ($name: String!) {
 		nil,
 		req,
 		resp,
+		opts...,
 	)
 
 	return &data, err

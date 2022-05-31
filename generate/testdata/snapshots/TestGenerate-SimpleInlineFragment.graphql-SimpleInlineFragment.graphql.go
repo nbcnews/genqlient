@@ -241,6 +241,7 @@ func (v *SimpleInlineFragmentResponse) __premarshalJSON() (*__premarshalSimpleIn
 
 func SimpleInlineFragment(
 	client graphql.Client,
+	opts ...graphql.RequestOption,
 ) (*SimpleInlineFragmentResponse, error) {
 	req := &graphql.Request{
 		OpName: "SimpleInlineFragment",
@@ -269,6 +270,7 @@ query SimpleInlineFragment {
 		nil,
 		req,
 		resp,
+		opts...,
 	)
 
 	return &data, err

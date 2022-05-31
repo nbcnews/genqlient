@@ -177,6 +177,7 @@ func (v *__CustomMarshalInput) __premarshalJSON() (*__premarshal__CustomMarshalI
 func CustomMarshal(
 	client graphql.Client,
 	date time.Time,
+	opts ...graphql.RequestOption,
 ) (*CustomMarshalResponse, error) {
 	req := &graphql.Request{
 		OpName: "CustomMarshal",
@@ -201,6 +202,7 @@ query CustomMarshal ($date: Date!) {
 		nil,
 		req,
 		resp,
+		opts...,
 	)
 
 	return &data, err

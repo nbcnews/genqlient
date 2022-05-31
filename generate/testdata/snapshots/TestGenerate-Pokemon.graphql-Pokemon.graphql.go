@@ -74,6 +74,7 @@ func (v *__GetPokemonSiblingsInput) GetInput() testutil.Pokemon { return v.Input
 func GetPokemonSiblings(
 	client graphql.Client,
 	input testutil.Pokemon,
+	opts ...graphql.RequestOption,
 ) (*GetPokemonSiblingsResponse, error) {
 	req := &graphql.Request{
 		OpName: "GetPokemonSiblings",
@@ -107,6 +108,7 @@ query GetPokemonSiblings ($input: PokemonInput!) {
 		nil,
 		req,
 		resp,
+		opts...,
 	)
 
 	return &data, err

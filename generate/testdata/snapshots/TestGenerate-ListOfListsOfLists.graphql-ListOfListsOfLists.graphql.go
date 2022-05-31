@@ -18,6 +18,7 @@ func (v *ListOfListsOfListsResponse) GetListOfListsOfLists() [][][]string {
 
 func ListOfListsOfLists(
 	client graphql.Client,
+	opts ...graphql.RequestOption,
 ) (*ListOfListsOfListsResponse, error) {
 	req := &graphql.Request{
 		OpName: "ListOfListsOfLists",
@@ -36,6 +37,7 @@ query ListOfListsOfLists {
 		nil,
 		req,
 		resp,
+		opts...,
 	)
 
 	return &data, err

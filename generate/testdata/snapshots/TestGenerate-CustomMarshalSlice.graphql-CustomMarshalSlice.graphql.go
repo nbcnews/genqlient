@@ -207,6 +207,7 @@ func CustomMarshalSlice(
 	client graphql.Client,
 	datesss [][][]time.Time,
 	datesssp [][][]*time.Time,
+	opts ...graphql.RequestOption,
 ) (*CustomMarshalSliceResponse, error) {
 	req := &graphql.Request{
 		OpName: "CustomMarshalSlice",
@@ -230,6 +231,7 @@ query CustomMarshalSlice ($datesss: [[[Date!]!]!]!, $datesssp: [[[Date!]!]!]!) {
 		nil,
 		req,
 		resp,
+		opts...,
 	)
 
 	return &data, err

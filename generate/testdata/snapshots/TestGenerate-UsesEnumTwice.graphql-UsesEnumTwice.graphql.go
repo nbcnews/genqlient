@@ -64,6 +64,7 @@ func (v *UsesEnumTwiceQueryResponse) GetOtherUser() UsesEnumTwiceQueryOtherUser 
 
 func UsesEnumTwiceQuery(
 	client graphql.Client,
+	opts ...graphql.RequestOption,
 ) (*UsesEnumTwiceQueryResponse, error) {
 	req := &graphql.Request{
 		OpName: "UsesEnumTwiceQuery",
@@ -87,6 +88,7 @@ query UsesEnumTwiceQuery {
 		nil,
 		req,
 		resp,
+		opts...,
 	)
 
 	return &data, err

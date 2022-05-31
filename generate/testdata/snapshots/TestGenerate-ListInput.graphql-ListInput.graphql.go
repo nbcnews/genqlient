@@ -44,6 +44,7 @@ func (v *__ListInputQueryInput) GetNames() []string { return v.Names }
 func ListInputQuery(
 	client graphql.Client,
 	names []string,
+	opts ...graphql.RequestOption,
 ) (*ListInputQueryResponse, error) {
 	req := &graphql.Request{
 		OpName: "ListInputQuery",
@@ -67,6 +68,7 @@ query ListInputQuery ($names: [String]) {
 		nil,
 		req,
 		resp,
+		opts...,
 	)
 
 	return &data, err

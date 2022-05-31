@@ -180,6 +180,7 @@ func (v *unexportedUser) GetId() testutil.ID { return v.Id }
 func unexported(
 	client graphql.Client,
 	query UserQueryInput,
+	opts ...graphql.RequestOption,
 ) (*unexportedResponse, error) {
 	req := &graphql.Request{
 		OpName: "unexported",
@@ -203,6 +204,7 @@ query unexported ($query: UserQueryInput) {
 		nil,
 		req,
 		resp,
+		opts...,
 	)
 
 	return &data, err

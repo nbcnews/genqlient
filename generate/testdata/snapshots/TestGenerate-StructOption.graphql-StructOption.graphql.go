@@ -426,6 +426,7 @@ func (v *VideoFields) GetDuration() int { return v.Duration }
 
 func StructOption(
 	client graphql.Client,
+	opts ...graphql.RequestOption,
 ) (*StructOptionResponse, error) {
 	req := &graphql.Request{
 		OpName: "StructOption",
@@ -468,6 +469,7 @@ fragment VideoFields on Video {
 		nil,
 		req,
 		resp,
+		opts...,
 	)
 
 	return &data, err

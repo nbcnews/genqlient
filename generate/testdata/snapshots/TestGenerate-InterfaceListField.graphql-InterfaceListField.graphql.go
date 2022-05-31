@@ -522,6 +522,7 @@ func (v *InterfaceListFieldWithPointerTopicChildrenVideo) GetName() string { ret
 
 func InterfaceListField(
 	client graphql.Client,
+	opts ...graphql.RequestOption,
 ) (*InterfaceListFieldResponse, error) {
 	req := &graphql.Request{
 		OpName: "InterfaceListField",
@@ -557,6 +558,7 @@ query InterfaceListField {
 		nil,
 		req,
 		resp,
+		opts...,
 	)
 
 	return &data, err

@@ -508,6 +508,7 @@ func (v *InterfaceListOfListOfListsFieldWithPointerVideo) GetName() *string { re
 
 func InterfaceListOfListOfListsField(
 	client graphql.Client,
+	opts ...graphql.RequestOption,
 ) (*InterfaceListOfListOfListsFieldResponse, error) {
 	req := &graphql.Request{
 		OpName: "InterfaceListOfListOfListsField",
@@ -535,6 +536,7 @@ query InterfaceListOfListOfListsField {
 		nil,
 		req,
 		resp,
+		opts...,
 	)
 
 	return &data, err
